@@ -21,6 +21,7 @@ black = "*"
 mypy = "*"  
 ruff = "*"  
 isort = "*" 
+ipykernel = "^6.29.2"
 
 [build-system]
 requires = ["poetry-core"]
