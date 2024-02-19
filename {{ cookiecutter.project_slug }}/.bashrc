@@ -11,6 +11,6 @@ Shortcuts:
 
 alias info="echo \"$__usage\""
 
-
 renew
 info
+poetry shell
