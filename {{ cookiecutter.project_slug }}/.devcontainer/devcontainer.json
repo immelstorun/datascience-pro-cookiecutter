@@ -3,7 +3,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/python-3
 {
-  "name": "Devcontainer: {{ cookiecutter.project_name }} - Py 3.11",
+  "name": "Project: {{ cookiecutter.project_name }} - Py 3.11",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "..",
