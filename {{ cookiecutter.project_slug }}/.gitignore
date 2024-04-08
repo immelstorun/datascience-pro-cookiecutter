@@ -163,4 +163,4 @@ cython_debug/
 
 
 # Cookiecutter project datascience-pro-cookiecutter
-data/
+data/*

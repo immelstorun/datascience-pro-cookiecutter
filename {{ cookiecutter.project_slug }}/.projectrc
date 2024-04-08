@@ -1,0 +1,18 @@
+
+# Please document the alias for the info alias
+# https://stackoverflow.com/questions/10969953/how-to-output-a-multiline-string-in-bash
+__usage="
+Shortcuts:
+    env:    Opens the .env file in VSCode: $HOME/.ssh/.env
+    info:   Shows this message
+    renew:  Reloads the .env file: $HOME/.ssh/.env
+"
+
+alias env="code /home/vscode/.ssh/.env"
+alias info="echo \"$__usage\""
+# https://gist.github.com/mihow/9c7f559807069a03e302605691f85572
+alias renew="set -o allexport && source $HOME/.ssh/.env set && set +o allexport"
+
+
+renew
+poetry shell && info

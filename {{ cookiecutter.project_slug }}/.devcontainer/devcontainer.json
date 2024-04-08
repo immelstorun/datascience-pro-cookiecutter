@@ -55,13 +55,9 @@
 "code-runner.defaultLanguage": "python",
 "code-runner.saveFileBeforeRun": true,
 
-}
-
-
-
-    ,
+}, 
   // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
+"extensions": [
     "ms-python.python",
     "ms-python.vscode-pylance",
     "formulahendry.code-runner",
@@ -88,9 +84,8 @@
     "github-cli": "latest"
   },
   "mounts": [
-    // Re-use local Git configuration
-    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.ssh/.env,target=/home/vscode/.env,type=bind,consistency=cached"
+    // Re-use local .env file
+    "source=${localEnv:HOME}/.ssh/.env,target=/home/vscode/.ssh/.env,type=bind,consistency=cached",
   ]
 }
 

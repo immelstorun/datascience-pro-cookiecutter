@@ -51,7 +51,11 @@ code blocks for commands
 
 8 directories, 12 files
 ```
-
+### Configuration
+You can inherit some configurations from the host to the container with the help of bind mounts.
+There are 2 built-in bind mounts, defined in ```./.devcontainer/devcontainer.json```:
+- Git confuguration: from ```~/.gitconfig``` on the host to ```/home/vscode/.gitconfig``` on the container,
+- .env file: from ```~/.ssh/.env``` on the host to ```/home/vscode/.ssh/.env``` on the container,
 ## Help
 
 Any advise for common problems or issues.
