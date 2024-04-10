@@ -2,7 +2,7 @@
 
 ## Description
 
-The coookiecutter project template for pro data science applications.
+The pro coookiecutter template for data science projects.
 The objectives of the project are to:
 * leverage .devcontainers in VS Code to isolate dev environment
 * use modern VS Code extentions, like ruff
