@@ -82,10 +82,10 @@
   "remoteUser": "vscode",
   "features": {
     "github-cli": "latest"
-  },
-  "mounts": [
-    // Re-use local .env file
-    "source=${localEnv:HOME}/.ssh/.env,target=/home/vscode/.ssh/.env,type=bind,consistency=cached",
-  ]
+  // },
+  // "mounts": [
+  //   // Re-use local .env file
+  //   "source=${localEnv:HOME}/.ssh/.env,target=/home/vscode/.ssh/.env,type=bind,consistency=cached",
+  // ]
 }
 
