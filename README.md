@@ -29,6 +29,11 @@ Simply:
 ```
 cookiecutter https://github.com/gox6/datascience-pro-cookiecutter.git
 ```
+
+```
+cookiecutter https://github.com/immelstorun/datascience-pro-cookiecutter.git
+```
+
 ### Structure
 ```
 ├── {{ cookiecutter.project_slug }}
