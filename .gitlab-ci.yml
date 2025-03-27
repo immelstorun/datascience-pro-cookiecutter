@@ -1,13 +1,27 @@
-default:
-  tags:
-    - sync_repo
-
 stages:
-  - test
+  - sync
 
-test:
-  stage: test
-  script: echo $CI_PROJECT_DIR/
+sync_to_github:
+  stage: sync
+  script:
+    - git config --global user.name "GitLab CI"
+    - git config --global user.email "gitlab-ci@example.com"
+    
+    # Настроим SSH для доступа к GitHub
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan github.com >> ~/.ssh/known_hosts
+    
+    # Клонируем репозиторий с GitLab (безопасный доступ по SSH)
+    - git clone --mirror git@gitlab.cspfmba.ru:aseikin/datascience-pro-cookiecutter.git
+    - cd datascience-pro-cookiecutter.git
+    
+    # Пушим изменения в GitHub (замените на свой репозиторий)
+    - git remote add github git@github.com:immelstorun/datascience-pro-cookiecutter.git
+    - git push --mirror github
+  only:
+    - main
+
 
 # stages:
 #   - test
