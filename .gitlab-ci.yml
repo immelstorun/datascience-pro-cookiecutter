@@ -1,15 +1,18 @@
-sync_to_github:
-  stage: deploy
-  script:
+stages:
+  - sync
+
+sync_with_github:
+  stage: sync
+  before_script:
+    - eval "$(ssh-agent -s)"
+    - ssh-add ~/.ssh/id_ed25519  # Подключаем SSH-ключ
     - git config --global user.name "GitLab CI"
     - git config --global user.email "gitlab-ci@example.com"
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh-keyscan github.com >> ~/.ssh/known_hosts
-    - git remote add github git@github.com:immelstorun/datascience-pro-cookiecutter.git || true
-    - git fetch --all
-    - git push --force --all github
-    - git push --force --tags github
+  script:
+    - git push --mirror git@github.com:immelstorun/datascience-pro-cookiecutter.git
+  only:
+    - main  # Запускать только при коммитах в main
+
 
 
 
