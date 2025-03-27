@@ -1,5 +1,5 @@
 sync_to_github:
-  stage: sync
+  stage: deploy
   tags:
     - sync_repo
   script:
