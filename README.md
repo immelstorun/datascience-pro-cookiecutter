@@ -1,4 +1,4 @@
-:)# Pro Template for Data Science Projects
+:)^)# Pro Template for Data Science Projects
 
 ## Description
 
