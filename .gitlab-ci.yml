@@ -1,0 +1,12 @@
+stages:
+  - sync
+
+sync_to_github:
+  stage: sync
+  script:
+    - git clone https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
+    - cd repository
+    - git remote add github https://github.com/immelstorun/datascience-pro-cookiecutter.git
+    - git push github main --force
+  only:
+    - main  # или другая ветка, с которой хотите синхронизировать
