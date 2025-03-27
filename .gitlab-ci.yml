@@ -1,10 +1,21 @@
+default:
+  tags:
+    - sync_repo
+
 stages:
   - test
 
-test_job:
+test:
   stage: test
-  script:
-    - echo "Hello, GitLab Runner!"
+  script: echo $CI_PROJECT_DIR/
+
+# stages:
+#   - test
+
+# test_job:
+#   stage: test
+#   script:
+#     - echo "Hello, GitLab Runner!"
 
 # stages:
 #   - sync
