@@ -9,4 +9,6 @@ sync_to_github:
     - git remote add github https://github.com/immelstorun/datascience-pro-cookiecutter.git
     - git push github main --force
   only:
-    - main  # или другая ветка, с которой хотите синхронизировать
+    - main 
+  tags:
+    - sync repo
