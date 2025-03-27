@@ -5,9 +5,11 @@ sync_with_github:
   stage: sync
   before_script:
     - eval "$(ssh-agent -s)"
-    - ssh-add ~/.ssh/id_ed25519  # Подключаем SSH-ключ
-    - git config --global user.name "GitLab CI"
-    - git config --global user.email "gitlab-ci@example.com"
+    - ssh-add /home/gitlab-runner/.ssh/id_ed25519
+    - ssh-keyscan github.com >> ~/.ssh/known_hosts
+    - ls -l /home/gitlab-runner/.ssh/  # Выводим содержимое директории с ключами
+    - ssh -T git@github.com  # Проверка подключения
+
   script:
     - git push --mirror git@github.com:immelstorun/datascience-pro-cookiecutter.git
   only:
