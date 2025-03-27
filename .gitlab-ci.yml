@@ -17,8 +17,8 @@ sync_to_github:
     # Клонируем репозиторий с GitLab
     - git clone https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
     - cd datascience-pro-cookiecutter
-    # Добавляем удалённый репозиторий GitHub
-    - git remote add github https://github.com/immelstorun/datascience-pro-cookiecutter.git
+    # Добавляем удалённый репозиторий GitHub с использованием токена
+    - git remote add github https://$CI_GITHUB_TOKEN@github.com/immelstorun/datascience-pro-cookiecutter.git
     # Проверяем и пуллим последние изменения с GitHub
     - git fetch github
     - git merge github/main --strategy-option=theirs || echo "No changes to merge"
@@ -26,4 +26,5 @@ sync_to_github:
     - git push github main
   only:
     - main
+
 
