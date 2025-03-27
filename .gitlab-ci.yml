@@ -1,15 +1,24 @@
-sync_to_github:
-  stage: deploy
-  tags:
-    - sync_repo
+stages:
+  - test
+
+test_job:
+  stage: test
   script:
-    - echo "Start sync process"
-    - git config --global user.email "youremail@example.com"
-    - git config --global user.name "Your Name"
-    - echo "Cloning GitHub repository"
-    - git clone https://github.com/immelstorun/datascience-pro-cookiecutter.git
-    - cd your_repo
-    - echo "Pulling from GitLab"
-    - git pull https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
-    - echo "Pushing to GitHub"
-    - git push https://github.com/immelstorun/datascience-pro-cookiecutter.git
+    - echo "Hello, GitLab Runner!"
+
+
+# sync_to_github:
+#   stage: deploy
+#   tags:
+#     - sync_repo
+#   script:
+#     - echo "Start sync process"
+#     - git config --global user.email "youremail@example.com"
+#     - git config --global user.name "Your Name"
+#     - echo "Cloning GitHub repository"
+#     - git clone https://github.com/immelstorun/datascience-pro-cookiecutter.git
+#     - cd your_repo
+#     - echo "Pulling from GitLab"
+#     - git pull https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
+#     - echo "Pushing to GitHub"
+#     - git push https://github.com/immelstorun/datascience-pro-cookiecutter.git
