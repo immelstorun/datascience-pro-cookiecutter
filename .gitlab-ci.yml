@@ -11,4 +11,4 @@ sync_to_github:
   only:
     - main 
   tags:
-    - sync repo
+    - sync_repo
