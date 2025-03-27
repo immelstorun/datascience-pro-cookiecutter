@@ -2,7 +2,7 @@ stages:
   - sync
 
 variables:
-  GITHUB_REPO: "https://immelstorun:${GITHUB_PAT}@github.com/immelstorun//datascience-pro-cookiecutter.git"
+  GITHUB_REPO: "https://immelstorun:${GITHUB_PAT}@github.com/immelstorun/datascience-pro-cookiecutter.git"
   GIT_DEPTH: 1  # Чтобы ускорить процесс, можно ограничить глубину истории
 
 sync_to_github:
