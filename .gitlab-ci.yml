@@ -1,48 +1,28 @@
+stages:
+  - test
+  - sync
+
+test_job:
+  stage: test
+  script:
+    - echo "Hello, GitLab Runner!"
+
 sync_with_github:
   stage: sync
+  variables:
+    GIT_STRATEGY: clone
   before_script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
     - git config --global user.name "GitLab CI"
     - git config --global user.email "gitlab-ci@example.com"
     - eval "$(ssh-agent -s)"
-    - ssh-add /home/gitlab-runner/.ssh/id_ed25519
+    - ssh-add ~/.ssh/id_ed25519
     - ssh-keyscan github.com >> ~/.ssh/known_hosts
-    - ls -l /home/gitlab-runner/.ssh/  # Смотрим на содержимое директории
-    - ssh -T git@github.com  # Проверка подключения
   script:
-    - echo "Pushing to GitHub..."
-    - git push --mirror git@github.com:immelstorun/datascience-pro-cookiecutter.git
-
-
-
-
-
-# stages:
-#   - test
-
-# test_job:
-#   stage: test
-#   script:
-#     - echo "Hello, GitLab Runner!"
-
-# stages:
-#   - sync
-
-# sync_to_github:
-#   stage: sync
-#   script:
-#     - git config --global user.name "GitLab CI"
-#     - git config --global user.email "gitlab-ci@example.com"
-#     # Клонируем репозиторий с GitLab
-#     - git clone https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
-#     - cd datascience-pro-cookiecutter
-#     # Добавляем удалённый репозиторий GitHub с использованием токена
-#     - git remote add github https://$GITHUB_TOKEN@github.com/immelstorun/datascience-pro-cookiecutter.git
-#     # Проверяем и пуллим последние изменения с GitHub
-#     - git fetch github
-#     - git merge github/main --strategy-option=theirs || echo "No changes to merge"
-#     # Пушим изменения в GitHub
-#     - git push github main
-#   only:
-#     - main
-
-
+    - git remote add github git@github.com:immelstorun/datascience-pro-cookiecutter.git
+    - git push github HEAD:main --force
+  only:
+    - main
