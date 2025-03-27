@@ -1,28 +1,23 @@
 stages:
-  - test
   - sync
 
-test_job:
-  stage: test
-  script:
-    - echo "Hello, GitLab Runner!"
+variables:
+  GITHUB_REPO: "https://immelstorun:${GITHUB_PAT}@github.com/immelstorun//datascience-pro-cookiecutter.git"
+  GIT_DEPTH: 1  # Чтобы ускорить процесс, можно ограничить глубину истории
 
-sync_with_github:
+sync_to_github:
   stage: sync
-  variables:
-    GIT_STRATEGY: clone
-  before_script:
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
-    - chmod 600 ~/.ssh/id_ed25519
-    - git config --global user.name "GitLab CI"
-    - git config --global user.email "gitlab-ci@example.com"
-    - eval "$(ssh-agent -s)"
-    - ssh-add ~/.ssh/id_ed25519
-    - ssh-keyscan github.com >> ~/.ssh/known_hosts
   script:
-    - git remote add github git@github.com:immelstorun/datascience-pro-cookiecutter.git
-    - git push github HEAD:main --force
+    # Клонируем репозиторий GitLab
+    - git clone --depth $GIT_DEPTH https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git repo
+    - cd repo
+    # Устанавливаем настройки Git, чтобы избежать проблем с аутентификацией
+    - git config user.email "ci@example.com"
+    - git config user.name "CI/CD"
+    # Добавляем GitHub как удалённый репозиторий
+    - git remote add github $GITHUB_REPO
+    # Пушим изменения в GitHub
+    - git push github --all
+    - git push github --tags
   only:
-    - main
+    - main  # Или ветка, которую хотите зеркалировать
