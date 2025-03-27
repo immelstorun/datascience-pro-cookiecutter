@@ -1,24 +1,29 @@
-stages:
-  - test
+# stages:
+#   - test
 
-test_job:
-  stage: test
-  script:
-    - echo "Hello, GitLab Runner!"
-
-
-# sync_to_github:
-#   stage: deploy
-#   tags:
-#     - sync_repo
+# test_job:
+#   stage: test
 #   script:
-#     - echo "Start sync process"
-#     - git config --global user.email "youremail@example.com"
-#     - git config --global user.name "Your Name"
-#     - echo "Cloning GitHub repository"
-#     - git clone https://github.com/immelstorun/datascience-pro-cookiecutter.git
-#     - cd your_repo
-#     - echo "Pulling from GitLab"
-#     - git pull https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
-#     - echo "Pushing to GitHub"
-#     - git push https://github.com/immelstorun/datascience-pro-cookiecutter.git
+#     - echo "Hello, GitLab Runner!"
+
+stages:
+  - sync
+
+sync_to_github:
+  stage: sync
+  script:
+    - git config --global user.name "GitLab CI"
+    - git config --global user.email "gitlab-ci@example.com"
+    # Клонируем репозиторий с GitLab
+    - git clone https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
+    - cd datascience-pro-cookiecutter
+    # Добавляем удалённый репозиторий GitHub
+    - git remote add github https://github.com/immelstorun/datascience-pro-cookiecutter.git
+    # Проверяем и пуллим последние изменения с GitHub
+    - git fetch github
+    - git merge github/main --strategy-option=theirs || echo "No changes to merge"
+    # Пушим изменения в GitHub
+    - git push github main
+  only:
+    - main
+
