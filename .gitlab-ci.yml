@@ -1,14 +1,15 @@
-stages:
-  - sync
-
 sync_to_github:
   stage: sync
-  script:
-    - git clone https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
-    - cd repository
-    - git remote add github https://github.com/immelstorun/datascience-pro-cookiecutter.git
-    - git push github main --force
-  only:
-    - main 
   tags:
     - sync_repo
+  script:
+    - echo "Start sync process"
+    - git config --global user.email "youremail@example.com"
+    - git config --global user.name "Your Name"
+    - echo "Cloning GitHub repository"
+    - git clone https://github.com/immelstorun/datascience-pro-cookiecutter.git
+    - cd your_repo
+    - echo "Pulling from GitLab"
+    - git pull https://gitlab.cspfmba.ru/aseikin/datascience-pro-cookiecutter.git
+    - echo "Pushing to GitHub"
+    - git push https://github.com/immelstorun/datascience-pro-cookiecutter.git
