@@ -1,13 +1,10 @@
-default:
-  tags:
-    - sync_repo
-
 stages:
-  - test
-
-test:
-  stage: test
-  script: echo $CI_PROJECT_DIR/
+- deploy
+deploy-job:
+stage: deploy
+script:
+- echo "Deploying application..."
+- echo "Application successfully deployed."
 
 # mirror-main:
 #   stage: test
