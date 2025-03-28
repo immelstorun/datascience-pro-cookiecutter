@@ -1,5 +1,5 @@
 mirror-main:
-  stage: mirror
+  stage: test
   variables:
     UPSTREAM_REPOSITORY: "git@github.com:immelstorun/datascience-pro-cookiecutter.git"
     UPSTREAM_BRANCH: "main"
